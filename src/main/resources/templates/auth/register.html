@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .card { max-width: 420px; padding: 20px; border: 1px solid #ddd; }
+        label { display: block; margin-top: 12px; }
+        input { width: 100%; padding: 8px; box-sizing: border-box; }
+        button { margin-top: 16px; padding: 8px 12px; }
+        .error { color: #c00; font-size: 0.9em; }
+        a { display: inline-block; margin-top: 12px; }
+    </style>
+</head>
+<body>
+<h1>Register</h1>
+<div class="card">
+    <form th:action="@{/register}" method="post" th:object="${registerForm}">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+        <label for="loginName">Login Name</label>
+        <input type="text" id="loginName" th:field="*{loginName}" />
+        <div class="error" th:if="${#fields.hasErrors('loginName')}" th:errors="*{loginName}"></div>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" th:field="*{password}" />
+        <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" th:field="*{confirmPassword}" />
+        <div class="error" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></div>
+        <div class="error" th:if="${#fields.hasErrors('passwordMatched')}" th:errors="*{passwordMatched}"></div>
+
+        <button type="submit">Register</button>
+    </form>
+    <a href="/login">Back to login</a>
+</div>
+</body>
+</html>

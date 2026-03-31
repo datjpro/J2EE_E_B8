@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Detail</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 24px; }
+        .label { font-weight: bold; width: 140px; display: inline-block; }
+        img { max-width: 300px; height: auto; display: block; margin-top: 12px; }
+        a.button { display: inline-block; padding: 6px 10px; border: 1px solid #333; text-decoration: none; }
+    </style>
+</head>
+<body>
+<h1>Product Detail</h1>
+
+<div>
+    <span class="label">ID:</span>
+    <span th:text="${product.id}"></span>
+</div>
+<div>
+    <span class="label">Name:</span>
+    <span th:text="${product.name}"></span>
+</div>
+<div>
+    <span class="label">Price:</span>
+    <span th:text="${product.price}"></span>
+</div>
+<div>
+    <span class="label">Category:</span>
+    <span th:text="${product.category != null ? product.category.name : '-'}"></span>
+</div>
+<div>
+    <span class="label">Image:</span>
+    <span th:text="${product.image}"></span>
+    <img th:if="${product.image != null and product.image != ''}" th:src="${product.image}" alt="product" />
+</div>
+
+<div style="margin-top: 16px;">
+    <a class="button" href="/products">Back to list</a>
+</div>
+</body>
+</html>
